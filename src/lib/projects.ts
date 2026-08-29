@@ -1,31 +1,120 @@
-// pendientes: fotos reales del portafolio — hoy son placeholders de Unsplash,
-// tal como venían en el diseño original.
-const PLACEHOLDER_SRCS = [
-  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1551292831-023188e78222?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=520&h=350&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=420&h=280&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1558865869-c93f6f8482af?w=360&h=500&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=550&fit=crop&q=80",
+export type ProjectPhoto = { src: string; w: number; h: number };
+
+export type Project = {
+  slug: string;
+  title: string;
+  category: string;
+  year: string;
+  concept?: string;
+  description: string;
+  role: string[];
+  tools: string[];
+  rot: number;
+  cover: ProjectPhoto;
+  gallery: ProjectPhoto[];
+};
+
+export const PROJECTS: Project[] = [
+  {
+    slug: "luz",
+    title: "LUZ",
+    category: "Fotografía comercial · Accesorios",
+    year: "2024",
+    description:
+      "Producción fotográfica desarrollada para Luz, un emprendimiento de accesorios artesanales en etapa de lanzamiento, creando contenido visual para comunicar la identidad de la marca y presentar collares, dijes y pulseras con una estética pensada para medios digitales (Instagram, página web).",
+    role: [
+      "Conceptualización de la sesión",
+      "Dirección de arte",
+      "Producción fotográfica",
+      "Fotografía de producto",
+      "Fotografía con modelo",
+      "Edición y retoque",
+    ],
+    tools: ["Lightroom", "Photoshop"],
+    rot: -1.5,
+    cover: { src: "/proyectos/luz-3.jpg", w: 532, h: 799 },
+    gallery: [
+      { src: "/proyectos/luz-1.jpg", w: 1066, h: 1599 },
+      { src: "/proyectos/luz-2.jpg", w: 533, h: 800 },
+      { src: "/proyectos/luz-3.jpg", w: 532, h: 799 },
+      { src: "/proyectos/luz-4.jpg", w: 533, h: 800 },
+      { src: "/proyectos/luz-5.jpg", w: 533, h: 800 },
+    ],
+  },
+  {
+    slug: "esencia",
+    title: "ESENCIA",
+    category: "Fotografía de producto",
+    year: "2024",
+    concept: "Naturaleza · Frescura · Bienestar",
+    description:
+      "Producción fotográfica desarrollada para destacar un aceite esencial mediante una propuesta visual de alto contraste, iluminación dirigida y una dirección de arte inspirada en elementos botánicos que transmiten frescura, bienestar y sofisticación.",
+    role: [
+      "Conceptualización",
+      "Dirección de arte",
+      "Producción fotográfica",
+      "Edición y retoque",
+    ],
+    tools: ["Lightroom", "Photoshop"],
+    rot: 1.0,
+    cover: { src: "/proyectos/esencia-2.jpg", w: 1066, h: 1599 },
+    gallery: [
+      { src: "/proyectos/esencia-2.jpg", w: 1066, h: 1599 },
+      { src: "/proyectos/esencia-1.jpg", w: 533, h: 800 },
+      { src: "/proyectos/esencia-3.jpg", w: 533, h: 800 },
+      { src: "/proyectos/esencia-4.jpg", w: 533, h: 800 },
+      { src: "/proyectos/esencia-5.jpg", w: 1600, h: 2400 },
+    ],
+  },
+  {
+    slug: "pelitos-felices",
+    title: "PELITOS FELICES",
+    category: "Fotografía comercial · Accesorios para el cabello",
+    year: "2024",
+    description:
+      "Producción fotográfica desarrollada para Pelitos Felices, un emprendimiento de accesorios para el cabello, creando contenido visual enfocado en resaltar el uso del producto y transmitir una imagen fresca, femenina y cercana para medios digitales.",
+    role: [
+      "Conceptualización de la sesión",
+      "Dirección de arte",
+      "Producción fotográfica",
+      "Fotografía de producto",
+      "Fotografía con modelo",
+      "Edición y retoque",
+    ],
+    tools: ["Lightroom", "Photoshop"],
+    rot: -0.5,
+    cover: { src: "/proyectos/pelitos-1.jpg", w: 1066, h: 1599 },
+    gallery: [
+      { src: "/proyectos/pelitos-1.jpg", w: 1066, h: 1599 },
+      { src: "/proyectos/pelitos-2.jpg", w: 533, h: 800 },
+      { src: "/proyectos/pelitos-3.png", w: 799, h: 526 },
+    ],
+  },
+  {
+    slug: "maria-luisa",
+    title: "MARÍA LUISA",
+    category: "Fotografía gastronómica",
+    year: "2024",
+    description:
+      "Producción gastronómica desarrollada para destacar la identidad visual del producto mediante una propuesta de dirección de arte e iluminación orientada a contenido para medios digitales: fotografía y video, planeación de contenido y diseño de portadas.",
+    role: [
+      "Conceptualización",
+      "Dirección de arte",
+      "Producción fotográfica",
+      "Grabación de reels",
+      "Edición y retoque",
+    ],
+    tools: ["Lightroom", "Photoshop", "CapCut", "Canva"],
+    rot: 2.0,
+    cover: { src: "/proyectos/marialuisa-3.jpg", w: 1599, h: 1066 },
+    gallery: [
+      { src: "/proyectos/marialuisa-3.jpg", w: 1599, h: 1066 },
+      { src: "/proyectos/marialuisa-1.jpg", w: 1229, h: 1599 },
+      { src: "/proyectos/marialuisa-2.jpg", w: 533, h: 800 },
+      { src: "/proyectos/marialuisa-4.jpg", w: 533, h: 800 },
+    ],
+  },
 ];
-
-const PROJECT_DEFS = [
-  { slug: "portrait-series", title: "PORTRAIT SERIES", year: "2024", rot: -1.5, w: 218, h: 298 },
-  { slug: "urban-landscapes", title: "URBAN LANDSCAPES", year: "2024", rot: 1.0, w: 316, h: 210 },
-  { slug: "editorial", title: "EDITORIAL", year: "2023", rot: -0.5, w: 196, h: 286 },
-  { slug: "documentary", title: "DOCUMENTARY", year: "2023", rot: 2.0, w: 210, h: 286 },
-  { slug: "fine-art", title: "FINE ART", year: "2022", rot: -1.0, w: 236, h: 316 },
-  { slug: "architecture", title: "ARCHITECTURE", year: "2024", rot: 0.5, w: 306, h: 200 },
-];
-
-export const PROJECTS = PROJECT_DEFS.map((project, i) => ({
-  ...project,
-  src: PLACEHOLDER_SRCS[i % PLACEHOLDER_SRCS.length],
-}));
-
-export type Project = (typeof PROJECTS)[number];
 
 export function getProject(slug: string): Project | undefined {
   return PROJECTS.find((project) => project.slug === slug);

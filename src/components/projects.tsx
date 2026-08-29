@@ -2,53 +2,95 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ViewTransition } from "react";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { PROJECTS, type ProjectPhoto } from "@/lib/projects";
 
-// Duplicado para el loop infinito del carrusel. Solo la primera copia de
-// cada proyecto comparte `name` de ViewTransition con su página de detalle
-// — dos elementos con el mismo name visibles a la vez no es válido.
-const PROJECT_TRACK: (Project & { shareTransition: boolean })[] = [
-  ...PROJECTS.map((project) => ({ ...project, shareTransition: true })),
-  ...PROJECTS.map((project) => ({ ...project, shareTransition: false })),
-];
+const CARD_HEIGHT = 290;
 
-function ProjectPhoto({ project }: { project: Project }) {
-  return (
-    <Image
-      src={project.src}
-      alt={project.title}
-      width={project.w}
-      height={project.h}
-      className="block object-cover grayscale"
-    />
-  );
+function cardWidth(photo: ProjectPhoto) {
+  return Math.round(CARD_HEIGHT * (photo.w / photo.h));
 }
 
-function ProjectCard({ project, shareTransition }: { project: Project; shareTransition: boolean }) {
+type TrackItem = {
+  key: string;
+  slug: string;
+  title: string;
+  year: string;
+  rot: number;
+  photo: ProjectPhoto;
+  shareTransition: boolean;
+};
+
+function buildTrack(): TrackItem[] {
+  const round: TrackItem[] = PROJECTS.flatMap((project) => {
+    const second = project.gallery.find((photo) => photo.src !== project.cover.src) ?? project.cover;
+    return [
+      {
+        key: `${project.slug}-cover`,
+        slug: project.slug,
+        title: project.title,
+        year: project.year,
+        rot: project.rot,
+        photo: project.cover,
+        shareTransition: true,
+      },
+      {
+        key: `${project.slug}-second`,
+        slug: project.slug,
+        title: project.title,
+        year: project.year,
+        rot: -project.rot * 0.7,
+        photo: second,
+        shareTransition: false,
+      },
+    ];
+  });
+  // Se duplica el recorrido completo para el loop infinito: ninguna copia del
+  // segundo giro comparte `name` de ViewTransition (ya lo hizo el primero).
+  return [
+    ...round,
+    ...round.map((item, i) => ({ ...item, key: `loop-${i}`, shareTransition: false })),
+  ];
+}
+
+const PROJECT_TRACK = buildTrack();
+
+function ProjectCard({ item }: { item: TrackItem }) {
+  const width = cardWidth(item.photo);
+  const photo = (
+    <Image
+      src={item.photo.src}
+      alt={item.title}
+      width={item.photo.w}
+      height={item.photo.h}
+      className="block object-cover grayscale"
+      style={{ width, height: CARD_HEIGHT }}
+    />
+  );
+
   return (
-    <Link href={`/proyectos/${project.slug}`} className="z-2 flex flex-col items-center px-[22px]">
+    <Link href={`/proyectos/${item.slug}`} className="z-2 flex flex-col items-center px-[22px]">
       <div
         className="flex flex-col items-center [transform-origin:top_center] [transform:rotate(var(--rot))]"
-        style={{ "--rot": `${project.rot}deg` } as CSSProperties}
+        style={{ "--rot": `${item.rot}deg` } as CSSProperties}
       >
         <div className="relative z-1 -mb-0.5 bg-paper px-3 py-1.5 text-[11px] font-bold tracking-[0.13em] whitespace-nowrap text-ink">
-          {project.title}
+          {item.title}
         </div>
         <div className="h-4 w-[9px] shrink-0 bg-paper" />
         <div className="border-3 border-paper p-1.5">
-          <div className="border border-accent" style={{ width: project.w }}>
-            {shareTransition ? (
-              <ViewTransition name={`project-${project.slug}`}>
-                <ProjectPhoto project={project} />
+          <div className="border border-accent" style={{ width }}>
+            {item.shareTransition ? (
+              <ViewTransition name={`project-${item.slug}`} share="morph" default="none">
+                {photo}
               </ViewTransition>
             ) : (
-              <ProjectPhoto project={project} />
+              photo
             )}
           </div>
         </div>
       </div>
       <div className="mt-3.5 text-[10px] tracking-[0.18em] text-paper/28 uppercase">
-        {project.year}
+        {item.year}
       </div>
     </Link>
   );
@@ -98,16 +140,16 @@ export function Projects() {
           </div>
         </div>
         <div className="text-right text-[10px] leading-[2.4] tracking-[0.2em] text-paper/28 uppercase">
-          <div>06 Series</div>
-          <div>2022–2025</div>
+          <div>{PROJECTS.length} Series</div>
+          <div>2024</div>
         </div>
       </div>
 
       <div className="relative z-2">
         <div className="absolute inset-x-0 top-5 z-1 h-0.5 bg-paper/18" />
         <div className="flex w-max animate-projects-scroll items-start">
-          {PROJECT_TRACK.map((project, i) => (
-            <ProjectCard key={i} project={project} shareTransition={project.shareTransition} />
+          {PROJECT_TRACK.map((item) => (
+            <ProjectCard key={item.key} item={item} />
           ))}
         </div>
       </div>

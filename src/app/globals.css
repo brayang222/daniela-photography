@@ -10,6 +10,10 @@
   --color-hero: #8f8d87;
   --color-accent: #ec3013;
   --color-night: #141410;
+  /* Azul marino tomado del portafolio anterior (danizuluaga.my.canva.site):
+     acento del sitio general (Hero/Sobre mí/Contacto). Proyectos conserva
+     su paleta night/paper/accent intacta. */
+  --color-navy: #182b5c;
 
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-rise-in: rise-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -73,6 +77,22 @@
    ============================================================ */
 ::view-transition {
   pointer-events: none;
+}
+
+/* Morph de la foto de proyecto entre el carrusel y su página: mismo objeto,
+   así que se desplaza y escala en vez de desaparecer. El blur a mitad de
+   camino tapa el estirón del pixel para que se sienta suave, no brusco. */
+::view-transition-group(.morph) {
+  animation-duration: 500ms;
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+  animation-duration: 500ms;
+}
+@keyframes via-blur {
+  30% {
+    filter: blur(4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
