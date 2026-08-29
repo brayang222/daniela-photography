@@ -1,0 +1,14 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Modelos pendientes: se definen cuando llegue el diseño y se sepa qué datos
+// necesita el portafolio (galerías, categorías, contacto, etc.).

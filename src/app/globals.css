@@ -1,1 +1,86 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+
+  /* Paleta del sistema "Modernist": ink/paper para texto y fondo,
+     hero para el gris cálido de la portada, accent para el rojo. */
+  --color-ink: #201e1d;
+  --color-paper: #f3f2f2;
+  --color-hero: #8f8d87;
+  --color-accent: #ec3013;
+  --color-night: #141410;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-rise-in: rise-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-line-grow: line-grow 1.1s cubic-bezier(0.76, 0, 0.24, 1) both;
+  --animate-marquee: marquee-scroll 30s linear infinite;
+  --animate-projects-scroll: marquee-scroll 58s linear infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(4vh) scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+/* ============================================================
+   View transitions.
+   Los pseudo-elementos ::view-transition-* viven fuera del árbol
+   del documento, así que no hay utilidad de Tailwind que los alcance.
+   Las animaciones concretas (morph, slides, crossfade) se añaden por
+   patrón según el diseño; esto es solo la higiene base.
+   ============================================================ */
+::view-transition {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
