@@ -44,7 +44,7 @@ export function Contact() {
             Daniela Zuluaga © 2025
           </div>
           <div className="text-[11px] tracking-[0.2em] text-paper/38 uppercase">
-            Fotógrafa Visual · Bogotá
+            Fotógrafa Visual · Medellín
           </div>
         </div>
       </div>

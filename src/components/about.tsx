@@ -33,7 +33,7 @@ export function About() {
             />
             <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/60 to-transparent px-6 py-5">
               <div className="text-[10px] tracking-[0.2em] text-white/60 uppercase">
-                Daniela Zuluaga — Bogotá, Colombia
+                Daniela Zuluaga — Medellín, Colombia
               </div>
             </div>
           </div>
@@ -51,9 +51,10 @@ export function About() {
             </h2>
             <div className="mb-7 h-0.5 w-10 bg-accent" />
             <p className="mb-[18px] max-w-[460px] text-base leading-[1.78] text-pretty">
-              Daniela Zuluaga es una fotógrafa colombiana radicada en Bogotá,
-              especializada en retrato, editorial y fotografía documental. Su
-              trabajo explora la identidad, la cultura y la conexión humana.
+              Daniela Zuluaga es una fotógrafa colombiana nacida en Sincelejo
+              y radicada en Medellín, especializada en fotografía de
+              producto, retrato y editorial. Su trabajo explora la
+              identidad, la cultura y la conexión humana.
             </p>
             <p className="max-w-[460px] text-[15px] leading-[1.78] text-ink/52 text-pretty">
               Con más de 8 años de trayectoria, ha colaborado con

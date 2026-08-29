@@ -1,72 +1,94 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
+import { ViewTransition } from "react";
+import { PROJECTS, type Project } from "@/lib/projects";
 
-const PLACEHOLDER_SRCS = [
-  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1551292831-023188e78222?w=400&h=550&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=520&h=350&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=420&h=280&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1558865869-c93f6f8482af?w=360&h=500&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=550&fit=crop&q=80",
+// Duplicado para el loop infinito del carrusel. Solo la primera copia de
+// cada proyecto comparte `name` de ViewTransition con su página de detalle
+// — dos elementos con el mismo name visibles a la vez no es válido.
+const PROJECT_TRACK: (Project & { shareTransition: boolean })[] = [
+  ...PROJECTS.map((project) => ({ ...project, shareTransition: true })),
+  ...PROJECTS.map((project) => ({ ...project, shareTransition: false })),
 ];
 
-// pendientes: fotos reales del portafolio — hoy son placeholders de Unsplash,
-// tal como venían en el diseño original.
-const PROJECT_DEFS = [
-  { title: "PORTRAIT SERIES", year: "2024", rot: -1.5, w: 218, h: 298 },
-  { title: "URBAN LANDSCAPES", year: "2024", rot: 1.0, w: 316, h: 210 },
-  { title: "EDITORIAL", year: "2023", rot: -0.5, w: 196, h: 286 },
-  { title: "DOCUMENTARY", year: "2023", rot: 2.0, w: 210, h: 286 },
-  { title: "FINE ART", year: "2022", rot: -1.0, w: 236, h: 316 },
-  { title: "ARCHITECTURE", year: "2024", rot: 0.5, w: 306, h: 200 },
-];
-
-const PROJECT_TRACK = [...PROJECT_DEFS, ...PROJECT_DEFS].map((project, i) => ({
-  ...project,
-  src: PLACEHOLDER_SRCS[i % PLACEHOLDER_SRCS.length],
-}));
-
-function ProjectCard({
-  title,
-  year,
-  rot,
-  w,
-  h,
-  src,
-}: (typeof PROJECT_TRACK)[number]) {
+function ProjectPhoto({ project }: { project: Project }) {
   return (
-    <div className="z-2 flex flex-col items-center px-[22px]">
+    <Image
+      src={project.src}
+      alt={project.title}
+      width={project.w}
+      height={project.h}
+      className="block object-cover grayscale"
+    />
+  );
+}
+
+function ProjectCard({ project, shareTransition }: { project: Project; shareTransition: boolean }) {
+  return (
+    <Link href={`/proyectos/${project.slug}`} className="z-2 flex flex-col items-center px-[22px]">
       <div
         className="flex flex-col items-center [transform-origin:top_center] [transform:rotate(var(--rot))]"
-        style={{ "--rot": `${rot}deg` } as CSSProperties}
+        style={{ "--rot": `${project.rot}deg` } as CSSProperties}
       >
-        <div className="relative z-1 -mb-0.5 bg-paper px-2.5 py-1 text-[10px] font-bold tracking-[0.13em] whitespace-nowrap text-ink">
-          {title}
+        <div className="relative z-1 -mb-0.5 bg-paper px-3 py-1.5 text-[11px] font-bold tracking-[0.13em] whitespace-nowrap text-ink">
+          {project.title}
         </div>
         <div className="h-4 w-[9px] shrink-0 bg-paper" />
-        <div className="overflow-hidden border-2 border-paper" style={{ width: w }}>
-          <Image
-            src={src}
-            alt={title}
-            width={w}
-            height={h}
-            className="block object-cover grayscale"
-          />
+        <div className="border-3 border-paper p-1.5">
+          <div className="border border-accent" style={{ width: project.w }}>
+            {shareTransition ? (
+              <ViewTransition name={`project-${project.slug}`}>
+                <ProjectPhoto project={project} />
+              </ViewTransition>
+            ) : (
+              <ProjectPhoto project={project} />
+            )}
+          </div>
         </div>
       </div>
       <div className="mt-3.5 text-[10px] tracking-[0.18em] text-paper/28 uppercase">
-        {year}
+        {project.year}
       </div>
-    </div>
+    </Link>
+  );
+}
+
+function Skyline() {
+  return (
+    <svg
+      className="absolute inset-0 z-0 h-full w-full opacity-40"
+      viewBox="0 0 1280 500"
+      preserveAspectRatio="xMidYMax slice"
+      aria-hidden
+    >
+      <g fill="none" className="stroke-paper" strokeWidth="1.2">
+        <ellipse cx="160" cy="60" rx="52" ry="17" />
+        <ellipse cx="1040" cy="42" rx="42" ry="14" />
+        <ellipse cx="620" cy="26" rx="32" ry="11" />
+        <rect x="0" y="230" width="90" height="270" />
+        <rect x="90" y="190" width="74" height="310" />
+        <rect x="200" y="250" width="104" height="250" />
+        <rect x="330" y="160" width="68" height="340" />
+        <rect x="430" y="215" width="90" height="285" />
+        <rect x="550" y="175" width="60" height="325" />
+        <rect x="640" y="245" width="120" height="255" />
+        <rect x="790" y="150" width="68" height="350" />
+        <rect x="890" y="225" width="98" height="275" />
+        <rect x="1020" y="185" width="74" height="315" />
+        <rect x="1130" y="240" width="150" height="260" />
+        <line x1="0" y1="230" x2="1280" y2="230" />
+      </g>
+    </svg>
   );
 }
 
 export function Projects() {
   return (
-    <section id="work" className="overflow-hidden bg-night py-22 pb-[110px]">
-      <div className="mb-18 flex items-end justify-between px-12">
+    <section id="work" className="relative overflow-hidden bg-night py-22 pb-[110px]">
+      <Skyline />
+
+      <div className="relative z-2 mb-18 flex items-end justify-between px-12">
         <div>
           <div className="mb-3.5 text-[11px] font-semibold tracking-[0.28em] text-accent uppercase">
             Trabajo Seleccionado
@@ -81,11 +103,11 @@ export function Projects() {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative z-2">
         <div className="absolute inset-x-0 top-5 z-1 h-0.5 bg-paper/18" />
         <div className="flex w-max animate-projects-scroll items-start">
           {PROJECT_TRACK.map((project, i) => (
-            <ProjectCard key={i} {...project} />
+            <ProjectCard key={i} project={project} shareTransition={project.shareTransition} />
           ))}
         </div>
       </div>

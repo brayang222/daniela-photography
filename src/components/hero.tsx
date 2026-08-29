@@ -70,7 +70,7 @@ export function Hero() {
           <div>Enamorada de la luz natural</div>
         </div>
         <div className="text-right">
-          <div>Basada en Bogotá</div>
+          <div>Basada en Medellín</div>
           <div>Portafolio 2025</div>
         </div>
       </div>
