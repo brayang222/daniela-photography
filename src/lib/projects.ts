@@ -16,12 +16,12 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "luz",
-    title: "LUZ",
+    slug: "estella",
+    title: "ESTELLA",
     category: "Fotografía comercial · Accesorios",
     year: "2024",
     description:
-      "Producción fotográfica desarrollada para Luz, un emprendimiento de accesorios artesanales en etapa de lanzamiento, creando contenido visual para comunicar la identidad de la marca y presentar collares, dijes y pulseras con una estética pensada para medios digitales (Instagram, página web).",
+      "Producción fotográfica desarrollada para Estella, un emprendimiento de accesorios artesanales en etapa de lanzamiento, creando contenido visual para comunicar la identidad de la marca y presentar collares, dijes y pulseras con una estética pensada para medios digitales (Instagram, página web).",
     role: [
       "Conceptualización de la sesión",
       "Dirección de arte",
@@ -32,13 +32,13 @@ export const PROJECTS: Project[] = [
     ],
     tools: ["Lightroom", "Photoshop"],
     rot: -1.5,
-    cover: { src: "/proyectos/luz-3.jpg", w: 532, h: 799 },
+    cover: { src: "/proyectos/luz-3.webp", w: 532, h: 799 },
     gallery: [
-      { src: "/proyectos/luz-1.jpg", w: 1066, h: 1599 },
-      { src: "/proyectos/luz-2.jpg", w: 533, h: 800 },
-      { src: "/proyectos/luz-3.jpg", w: 532, h: 799 },
-      { src: "/proyectos/luz-4.jpg", w: 533, h: 800 },
-      { src: "/proyectos/luz-5.jpg", w: 533, h: 800 },
+      { src: "/proyectos/luz-1.webp", w: 1066, h: 1599 },
+      { src: "/proyectos/luz-2.webp", w: 533, h: 800 },
+      { src: "/proyectos/luz-3.webp", w: 532, h: 799 },
+      { src: "/proyectos/luz-4.webp", w: 533, h: 800 },
+      { src: "/proyectos/luz-5.webp", w: 533, h: 800 },
     ],
   },
   {
@@ -57,13 +57,13 @@ export const PROJECTS: Project[] = [
     ],
     tools: ["Lightroom", "Photoshop"],
     rot: 1.0,
-    cover: { src: "/proyectos/esencia-2.jpg", w: 1066, h: 1599 },
+    cover: { src: "/proyectos/esencia-2.webp", w: 1066, h: 1599 },
     gallery: [
-      { src: "/proyectos/esencia-2.jpg", w: 1066, h: 1599 },
-      { src: "/proyectos/esencia-1.jpg", w: 533, h: 800 },
-      { src: "/proyectos/esencia-3.jpg", w: 533, h: 800 },
-      { src: "/proyectos/esencia-4.jpg", w: 533, h: 800 },
-      { src: "/proyectos/esencia-5.jpg", w: 1600, h: 2400 },
+      { src: "/proyectos/esencia-2.webp", w: 1066, h: 1599 },
+      { src: "/proyectos/esencia-1.webp", w: 533, h: 800 },
+      { src: "/proyectos/esencia-3.webp", w: 533, h: 800 },
+      { src: "/proyectos/esencia-4.webp", w: 533, h: 800 },
+      { src: "/proyectos/esencia-5.webp", w: 1600, h: 2400 },
     ],
   },
   {
@@ -83,11 +83,11 @@ export const PROJECTS: Project[] = [
     ],
     tools: ["Lightroom", "Photoshop"],
     rot: -0.5,
-    cover: { src: "/proyectos/pelitos-1.jpg", w: 1066, h: 1599 },
+    cover: { src: "/proyectos/pelitos-1.webp", w: 1066, h: 1599 },
     gallery: [
-      { src: "/proyectos/pelitos-1.jpg", w: 1066, h: 1599 },
-      { src: "/proyectos/pelitos-2.jpg", w: 533, h: 800 },
-      { src: "/proyectos/pelitos-3.png", w: 799, h: 526 },
+      { src: "/proyectos/pelitos-1.webp", w: 1066, h: 1599 },
+      { src: "/proyectos/pelitos-2.webp", w: 533, h: 800 },
+      { src: "/proyectos/pelitos-3.webp", w: 799, h: 526 },
     ],
   },
   {
@@ -106,12 +106,12 @@ export const PROJECTS: Project[] = [
     ],
     tools: ["Lightroom", "Photoshop", "CapCut", "Canva"],
     rot: 2.0,
-    cover: { src: "/proyectos/marialuisa-3.jpg", w: 1599, h: 1066 },
+    cover: { src: "/proyectos/marialuisa-3.webp", w: 1599, h: 1066 },
     gallery: [
-      { src: "/proyectos/marialuisa-3.jpg", w: 1599, h: 1066 },
-      { src: "/proyectos/marialuisa-1.jpg", w: 1229, h: 1599 },
-      { src: "/proyectos/marialuisa-2.jpg", w: 533, h: 800 },
-      { src: "/proyectos/marialuisa-4.jpg", w: 533, h: 800 },
+      { src: "/proyectos/marialuisa-3.webp", w: 1599, h: 1066 },
+      { src: "/proyectos/marialuisa-1.webp", w: 1229, h: 1599 },
+      { src: "/proyectos/marialuisa-2.webp", w: 533, h: 800 },
+      { src: "/proyectos/marialuisa-4.webp", w: 533, h: 800 },
     ],
   },
 ];

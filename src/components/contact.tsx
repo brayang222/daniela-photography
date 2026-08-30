@@ -45,7 +45,7 @@ export function Contact() {
 
         <div className="mt-21 flex items-center justify-between border-t border-paper/18 pt-7">
           <div className="text-[11px] tracking-[0.2em] text-paper/38 uppercase">
-            Daniela Zuluaga © 2025
+            Daniela Zuluaga © 2026
           </div>
           <div className="text-[11px] tracking-[0.2em] text-paper/38 uppercase">
             Fotógrafa Visual · Medellín

@@ -35,7 +35,7 @@ export function Hero() {
           Daniela
         </a>
         <div className="flex items-start gap-[clamp(24px,5vw,64px)]">
-          <span className="pt-0.5 text-[13px] text-ink/70">2025</span>
+          <span className="pt-0.5 text-[13px] text-ink/70">2026</span>
           <NavColumn links={primaryNav} />
           <NavColumn links={socialNav} />
         </div>
@@ -56,7 +56,7 @@ export function Hero() {
       </div>
 
       <Image
-        src="/daniela-portrait.png"
+        src="/daniela-portrait.webp"
         alt="Retrato de Daniela"
         width={1224}
         height={1285}
@@ -73,8 +73,8 @@ export function Hero() {
           <div>Enamorada de la luz natural</div>
         </div>
         <div className="text-right">
-          <div>Basada en Medellín</div>
-          <div>Portafolio 2025</div>
+          <div>Ubicada en Medellín</div>
+          <div>Portafolio 2026</div>
         </div>
       </div>
     </section>

@@ -62,13 +62,17 @@ function ProjectCard({ item }: { item: TrackItem }) {
       alt={item.title}
       width={item.photo.w}
       height={item.photo.h}
-      className="block object-cover grayscale"
+      className="block object-cover"
       style={{ width, height: CARD_HEIGHT }}
     />
   );
 
   return (
-    <Link href={`/proyectos/${item.slug}`} className="z-2 flex flex-col items-center px-[22px]">
+    <Link
+      href={`/proyectos/${item.slug}`}
+      transitionTypes={["nav-forward"]}
+      className="z-2 flex flex-col items-center px-[22px]"
+    >
       <div
         className="flex flex-col items-center [transform-origin:top_center] [transform:rotate(var(--rot))]"
         style={{ "--rot": `${item.rot}deg` } as CSSProperties}

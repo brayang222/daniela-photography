@@ -6,7 +6,7 @@ import Image from "next/image";
 export function MarbleBackdrop({ opacity = 12 }: { opacity?: number }) {
   return (
     <Image
-      src="/marble.png"
+      src="/marble.webp"
       alt=""
       fill
       aria-hidden

@@ -17,7 +17,7 @@ export function About() {
         <div className="grid items-start gap-[clamp(48px,6vw,96px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))]">
           <div className="relative">
             <Image
-              src="/daniela-about.jpg"
+              src="/daniela-about.webp"
               alt="Daniela Zuluaga"
               width={1066}
               height={1599}
