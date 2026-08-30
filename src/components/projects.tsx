@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ViewTransition } from "react";
+import { Skyline } from "@/components/skyline";
 import { PROJECTS, type ProjectPhoto } from "@/lib/projects";
 
 const CARD_HEIGHT = 290;
@@ -62,7 +63,7 @@ function ProjectCard({ item }: { item: TrackItem }) {
       alt={item.title}
       width={item.photo.w}
       height={item.photo.h}
-      className="block object-cover"
+      className="block object-cover transition-transform duration-500 group-hover:scale-105"
       style={{ width, height: CARD_HEIGHT }}
     />
   );
@@ -71,7 +72,8 @@ function ProjectCard({ item }: { item: TrackItem }) {
     <Link
       href={`/proyectos/${item.slug}`}
       transitionTypes={["nav-forward"]}
-      className="z-2 flex flex-col items-center px-[22px]"
+      data-cursor="Ver"
+      className="group z-2 flex cursor-none flex-col items-center px-[22px]"
     >
       <div
         className="flex flex-col items-center [transform-origin:top_center] [transform:rotate(var(--rot))]"
@@ -82,7 +84,7 @@ function ProjectCard({ item }: { item: TrackItem }) {
         </div>
         <div className="h-4 w-[9px] shrink-0 bg-paper" />
         <div className="border-3 border-paper p-1.5">
-          <div className="border border-accent" style={{ width }}>
+          <div className="overflow-hidden border border-accent" style={{ width }}>
             {item.shareTransition ? (
               <ViewTransition name={`project-${item.slug}`} share="morph" default="none">
                 {photo}
@@ -93,39 +95,10 @@ function ProjectCard({ item }: { item: TrackItem }) {
           </div>
         </div>
       </div>
-      <div className="mt-3.5 text-[10px] tracking-[0.18em] text-paper/28 uppercase">
+      <div className="mt-3.5 text-[10px] tracking-[0.18em] text-paper/50 uppercase">
         {item.year}
       </div>
     </Link>
-  );
-}
-
-function Skyline() {
-  return (
-    <svg
-      className="absolute inset-0 z-0 h-full w-full opacity-40"
-      viewBox="0 0 1280 500"
-      preserveAspectRatio="xMidYMax slice"
-      aria-hidden
-    >
-      <g fill="none" className="stroke-paper" strokeWidth="1.2">
-        <ellipse cx="160" cy="60" rx="52" ry="17" />
-        <ellipse cx="1040" cy="42" rx="42" ry="14" />
-        <ellipse cx="620" cy="26" rx="32" ry="11" />
-        <rect x="0" y="230" width="90" height="270" />
-        <rect x="90" y="190" width="74" height="310" />
-        <rect x="200" y="250" width="104" height="250" />
-        <rect x="330" y="160" width="68" height="340" />
-        <rect x="430" y="215" width="90" height="285" />
-        <rect x="550" y="175" width="60" height="325" />
-        <rect x="640" y="245" width="120" height="255" />
-        <rect x="790" y="150" width="68" height="350" />
-        <rect x="890" y="225" width="98" height="275" />
-        <rect x="1020" y="185" width="74" height="315" />
-        <rect x="1130" y="240" width="150" height="260" />
-        <line x1="0" y1="230" x2="1280" y2="230" />
-      </g>
-    </svg>
   );
 }
 
@@ -134,7 +107,7 @@ export function Projects() {
     <section id="work" className="relative overflow-hidden bg-night py-22 pb-[110px]">
       <Skyline />
 
-      <div className="relative z-2 mb-18 flex items-end justify-between px-12">
+      <div className="relative z-2 mb-18 flex flex-col gap-4 px-12 md:flex-row md:items-end md:justify-between md:gap-0">
         <div>
           <div className="mb-3.5 text-[11px] font-semibold tracking-[0.28em] text-accent uppercase">
             Trabajo Seleccionado
@@ -143,7 +116,7 @@ export function Projects() {
             Proyectos
           </div>
         </div>
-        <div className="text-right text-[10px] leading-[2.4] tracking-[0.2em] text-paper/28 uppercase">
+        <div className="text-[10px] leading-[2.4] tracking-[0.2em] text-paper/50 uppercase md:text-right">
           <div>{PROJECTS.length} Series</div>
           <div>2024</div>
         </div>

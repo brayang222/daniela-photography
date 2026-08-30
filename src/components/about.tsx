@@ -14,7 +14,7 @@ export function About() {
       <MarbleBackdrop opacity={8} />
 
       <div className="relative border-t-2 border-ink pt-16">
-        <div className="grid items-start gap-[clamp(48px,6vw,96px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))]">
+        <div className="grid items-center gap-[clamp(48px,6vw,96px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))]">
           <div className="relative">
             <Image
               src="/daniela-about.webp"
@@ -49,7 +49,7 @@ export function About() {
               comercial, dirección de arte y producción de contenido
               visual para marcas.
             </p>
-            <p className="max-w-[460px] text-[15px] leading-[1.78] text-ink/52 text-pretty">
+            <p className="max-w-[460px] text-[15px] leading-[1.78] text-ink/65 text-pretty">
               Le interesa aportar a equipos de marketing y comunicación
               creando contenido visual que fortalezca la identidad de las
               marcas y conecte con su audiencia a través de la fotografía,

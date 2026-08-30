@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
+import { CustomCursor } from "@/components/custom-cursor";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -9,14 +11,21 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Daniela Photography",
-  description: "Portafolio de Daniela Photography.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Daniela Photography",
+    template: "%s · Daniela Photography",
+  },
+  description: "Portafolio de Daniela Zuluaga, fotógrafa en Medellín.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={archivo.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <CustomCursor />
+      </body>
     </html>
   );
 }

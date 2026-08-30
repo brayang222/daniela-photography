@@ -21,9 +21,7 @@ export function Icon({
   size = 20,
   ...props
 }: { name: IconName; size?: number } & Omit<SVGProps<SVGSVGElement>, "name">) {
-  const d: string | undefined = PATHS[name];
-
-  if (!d) return null;
+  const d = PATHS[name];
 
   return (
     <svg

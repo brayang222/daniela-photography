@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MarbleBackdrop } from "@/components/marble-backdrop";
+import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
 const primaryNav = [
   { href: "#about", label: "Historia" },
@@ -8,16 +9,15 @@ const primaryNav = [
 ];
 
 const socialNav = [
-  { href: "#", label: "Instagram" },
-  { href: "#", label: "TikTok" },
-  { href: "#", label: "YouTube" },
+  { href: INSTAGRAM_URL, label: "Instagram" },
+  { href: WHATSAPP_URL, label: "WhatsApp" },
 ];
 
 function NavColumn({ links }: { links: { href: string; label: string }[] }) {
   return (
     <nav className="flex flex-col gap-[3px] text-[13px] text-ink/70">
       {links.map((link) => (
-        <a key={link.label} href={link.href}>
+        <a key={link.label} href={link.href} className="transition-opacity hover:opacity-60">
           {link.label}
         </a>
       ))}
@@ -28,10 +28,13 @@ function NavColumn({ links }: { links: { href: string; label: string }[] }) {
 export function Hero() {
   return (
     <section className="relative h-dvh overflow-hidden bg-white">
-      <MarbleBackdrop />
+      <MarbleBackdrop priority />
 
       <header className="absolute inset-x-0 top-0 z-30 flex animate-fade-up items-start justify-between px-12 py-8 [animation-delay:800ms]">
-        <a href="#" className="text-[15px] font-bold tracking-[0.02em] text-ink">
+        <a
+          href="#"
+          className="text-[15px] font-bold tracking-[0.02em] text-ink transition-opacity hover:opacity-60"
+        >
           Daniela
         </a>
         <div className="flex items-start gap-[clamp(24px,5vw,64px)]">
@@ -61,7 +64,7 @@ export function Hero() {
         width={1224}
         height={1285}
         priority
-        className="pointer-events-none absolute top-[6%] bottom-0 left-1/2 z-20 h-[79%] w-auto -translate-x-1/2 animate-rise-in object-contain object-bottom [animation-delay:300ms] md:h-[94%]"
+        className="pointer-events-none absolute bottom-0 left-1/2 z-20 h-auto max-h-[79%] w-auto max-w-[88%] -translate-x-1/2 animate-rise-in object-contain object-bottom [animation-delay:300ms] md:max-h-[94%] md:max-w-[70%]"
       />
 
       <div className="absolute inset-x-12 bottom-33 z-10 h-px origin-left animate-line-grow bg-ink/20 [animation-delay:1200ms]" />

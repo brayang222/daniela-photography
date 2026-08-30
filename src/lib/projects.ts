@@ -1,4 +1,4 @@
-export type ProjectPhoto = { src: string; w: number; h: number };
+export type ProjectPhoto = { src: string; w: number; h: number; caption?: string };
 
 export type Project = {
   slug: string;
@@ -34,11 +34,36 @@ export const PROJECTS: Project[] = [
     rot: -1.5,
     cover: { src: "/proyectos/luz-3.webp", w: 532, h: 799 },
     gallery: [
-      { src: "/proyectos/luz-1.webp", w: 1066, h: 1599 },
-      { src: "/proyectos/luz-2.webp", w: 533, h: 800 },
-      { src: "/proyectos/luz-3.webp", w: 532, h: 799 },
-      { src: "/proyectos/luz-4.webp", w: 533, h: 800 },
-      { src: "/proyectos/luz-5.webp", w: 533, h: 800 },
+      {
+        src: "/proyectos/luz-1.webp",
+        w: 1066,
+        h: 1599,
+        caption: "Collares y pulseras en mano, luz natural",
+      },
+      {
+        src: "/proyectos/luz-2.webp",
+        w: 533,
+        h: 800,
+        caption: "Dije de margarita sobre columna acanalada",
+      },
+      {
+        src: "/proyectos/luz-3.webp",
+        w: 532,
+        h: 799,
+        caption: "Cadena con dijes de corazón sobre copa de cristal",
+      },
+      {
+        src: "/proyectos/luz-4.webp",
+        w: 533,
+        h: 800,
+        caption: "Dijes y aretes dorados, bodegón sobre plato blanco",
+      },
+      {
+        src: "/proyectos/luz-5.webp",
+        w: 533,
+        h: 800,
+        caption: "Pulsera de dijes en muñeca, tela blanca",
+      },
     ],
   },
   {
@@ -59,11 +84,36 @@ export const PROJECTS: Project[] = [
     rot: 1.0,
     cover: { src: "/proyectos/esencia-2.webp", w: 1066, h: 1599 },
     gallery: [
-      { src: "/proyectos/esencia-2.webp", w: 1066, h: 1599 },
-      { src: "/proyectos/esencia-1.webp", w: 533, h: 800 },
-      { src: "/proyectos/esencia-3.webp", w: 533, h: 800 },
-      { src: "/proyectos/esencia-4.webp", w: 533, h: 800 },
-      { src: "/proyectos/esencia-5.webp", w: 1600, h: 2400 },
+      {
+        src: "/proyectos/esencia-2.webp",
+        w: 1066,
+        h: 1599,
+        caption: "Frasco de esencia, fondo oscuro",
+      },
+      {
+        src: "/proyectos/esencia-1.webp",
+        w: 533,
+        h: 800,
+        caption: "Vapor y flores alrededor del frasco",
+      },
+      {
+        src: "/proyectos/esencia-3.webp",
+        w: 533,
+        h: 800,
+        caption: "Composición con ramas y cítrico",
+      },
+      {
+        src: "/proyectos/esencia-4.webp",
+        w: 533,
+        h: 800,
+        caption: "Astromelias naranjas junto al frasco",
+      },
+      {
+        src: "/proyectos/esencia-5.webp",
+        w: 1600,
+        h: 2400,
+        caption: "Bodegón sobre espejo con follaje",
+      },
     ],
   },
   {
@@ -85,9 +135,24 @@ export const PROJECTS: Project[] = [
     rot: -0.5,
     cover: { src: "/proyectos/pelitos-1.webp", w: 1066, h: 1599 },
     gallery: [
-      { src: "/proyectos/pelitos-1.webp", w: 1066, h: 1599 },
-      { src: "/proyectos/pelitos-2.webp", w: 533, h: 800 },
-      { src: "/proyectos/pelitos-3.webp", w: 799, h: 526 },
+      {
+        src: "/proyectos/pelitos-1.webp",
+        w: 1066,
+        h: 1599,
+        caption: "Moño en el cabello, retrato de perfil",
+      },
+      {
+        src: "/proyectos/pelitos-2.webp",
+        w: 533,
+        h: 800,
+        caption: "Scrunchie rosa en la muñeca, luz de calle",
+      },
+      {
+        src: "/proyectos/pelitos-3.webp",
+        w: 799,
+        h: 526,
+        caption: "Moño color crema entre los dedos, contraluz",
+      },
     ],
   },
   {
@@ -108,10 +173,30 @@ export const PROJECTS: Project[] = [
     rot: 2.0,
     cover: { src: "/proyectos/marialuisa-3.webp", w: 1599, h: 1066 },
     gallery: [
-      { src: "/proyectos/marialuisa-3.webp", w: 1599, h: 1066 },
-      { src: "/proyectos/marialuisa-1.webp", w: 1229, h: 1599 },
-      { src: "/proyectos/marialuisa-2.webp", w: 533, h: 800 },
-      { src: "/proyectos/marialuisa-4.webp", w: 533, h: 800 },
+      {
+        src: "/proyectos/marialuisa-3.webp",
+        w: 1599,
+        h: 1066,
+        caption: "Torta completa con mermelada y flores",
+      },
+      {
+        src: "/proyectos/marialuisa-1.webp",
+        w: 1229,
+        h: 1599,
+        caption: "Porción servida, mantel tejido y moras",
+      },
+      {
+        src: "/proyectos/marialuisa-2.webp",
+        w: 533,
+        h: 800,
+        caption: "Corte de la torta, decoración otoñal",
+      },
+      {
+        src: "/proyectos/marialuisa-4.webp",
+        w: 533,
+        h: 800,
+        caption: "Torta en mano, fondo azul liso",
+      },
     ],
   },
 ];

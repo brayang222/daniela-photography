@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,6 +8,24 @@ import { PROJECTS, getProject } from "@/lib/projects";
 
 export function generateStaticParams() {
   return PROJECTS.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata(
+  props: PageProps<"/proyectos/[slug]">,
+): Promise<Metadata> {
+  const { slug } = await props.params;
+  const project = getProject(slug);
+  if (!project) return {};
+
+  return {
+    title: project.title,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      images: [{ url: project.cover.src, width: project.cover.w, height: project.cover.h }],
+    },
+  };
 }
 
 export default async function ProjectPage(props: PageProps<"/proyectos/[slug]">) {
@@ -78,7 +97,7 @@ export default async function ProjectPage(props: PageProps<"/proyectos/[slug]">)
 
             <div className="flex flex-col gap-10">
               <div>
-                <div className="mb-4 text-[11px] tracking-[0.2em] text-paper/40 uppercase">
+                <div className="mb-4 text-[11px] tracking-[0.2em] text-paper/55 uppercase">
                   Mi rol
                 </div>
                 <ul className="flex flex-col gap-2">
@@ -90,7 +109,7 @@ export default async function ProjectPage(props: PageProps<"/proyectos/[slug]">)
                 </ul>
               </div>
               <div>
-                <div className="mb-4 text-[11px] tracking-[0.2em] text-paper/40 uppercase">
+                <div className="mb-4 text-[11px] tracking-[0.2em] text-paper/55 uppercase">
                   Herramientas
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -115,7 +134,7 @@ export default async function ProjectPage(props: PageProps<"/proyectos/[slug]">)
           transitionTypes={["nav-forward"]}
           className="group flex items-center justify-between border-t border-paper/18 px-12 py-10"
         >
-          <span className="text-[11px] tracking-[0.2em] text-paper/40 uppercase">
+          <span className="text-[11px] tracking-[0.2em] text-paper/55 uppercase">
             Siguiente proyecto
           </span>
           <span className="text-[15px] font-bold tracking-[0.04em] text-paper uppercase transition-opacity group-hover:opacity-60">

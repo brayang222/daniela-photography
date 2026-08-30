@@ -1,8 +1,9 @@
 import { MarbleBackdrop } from "@/components/marble-backdrop";
+import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
 const SOCIAL_LINKS = [
-  { href: "https://instagram.com/danielazuluaga_fotografa", label: "Instagram" },
-  { href: "https://wa.me/573003415846", label: "WhatsApp" },
+  { href: INSTAGRAM_URL, label: "Instagram" },
+  { href: WHATSAPP_URL, label: "WhatsApp" },
 ];
 
 export function Contact() {
@@ -25,7 +26,7 @@ export function Contact() {
           <div className="flex flex-col items-end gap-3.5">
             <a
               href="mailto:danielazuluaga2113@gmail.com"
-              className="text-[17px] font-semibold tracking-[0.04em] text-paper"
+              className="text-[17px] font-semibold tracking-[0.04em] text-paper transition-opacity hover:opacity-60"
             >
               danielazuluaga2113@gmail.com
             </a>
@@ -34,7 +35,7 @@ export function Contact() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[11px] tracking-[0.22em] text-paper/55 uppercase"
+                  className="text-[11px] tracking-[0.22em] text-paper/55 uppercase transition-opacity hover:opacity-60"
                 >
                   {link.label}
                 </a>
@@ -44,10 +45,10 @@ export function Contact() {
         </div>
 
         <div className="mt-21 flex items-center justify-between border-t border-paper/18 pt-7">
-          <div className="text-[11px] tracking-[0.2em] text-paper/38 uppercase">
+          <div className="text-[11px] tracking-[0.2em] text-paper/55 uppercase">
             Daniela Zuluaga © 2026
           </div>
-          <div className="text-[11px] tracking-[0.2em] text-paper/38 uppercase">
+          <div className="text-[11px] tracking-[0.2em] text-paper/55 uppercase">
             Fotógrafa Visual · Medellín
           </div>
         </div>
