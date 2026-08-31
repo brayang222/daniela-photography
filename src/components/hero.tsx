@@ -64,7 +64,7 @@ export function Hero() {
         width={1224}
         height={1285}
         priority
-        className="pointer-events-none absolute bottom-0 left-1/2 z-20 h-auto max-h-[79%] w-auto max-w-[88%] -translate-x-1/2 animate-rise-in object-contain object-bottom [animation-delay:300ms] md:max-h-[94%] md:max-w-[70%]"
+        className="pointer-events-none absolute bottom-36 left-1/2 z-20 h-auto max-h-[79%] w-auto max-w-[88%] -translate-x-1/2 animate-rise-in object-contain object-bottom [animation-delay:300ms] md:bottom-0 md:max-h-[94%] md:max-w-[70%]"
       />
 
       <div className="absolute inset-x-12 bottom-33 z-10 h-px origin-left animate-line-grow bg-ink/20 [animation-delay:1200ms]" />

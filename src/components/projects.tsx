@@ -5,10 +5,13 @@ import { ViewTransition } from "react";
 import { Skyline } from "@/components/skyline";
 import { getProjects, type Project, type ProjectPhoto } from "@/lib/projects";
 
-const CARD_HEIGHT = 290;
+// Alto responsivo vía CSS var (--card-h, declarada en el track): en pantallas
+// angostas escala con el viewport en vez de quedar fijo en el tamaño de
+// escritorio.
+const CARD_HEIGHT_EXPR = "clamp(150px, 46vw, 290px)";
 
-function cardWidth(photo: ProjectPhoto) {
-  return Math.round(CARD_HEIGHT * (photo.w / photo.h));
+function cardWidthExpr(photo: ProjectPhoto) {
+  return `calc(var(--card-h) * ${photo.w / photo.h})`;
 }
 
 type TrackItem = {
@@ -44,7 +47,7 @@ function buildTrack(projects: Project[]): TrackItem[] {
 }
 
 function ProjectCard({ item }: { item: TrackItem }) {
-  const width = cardWidth(item.photo);
+  const width = cardWidthExpr(item.photo);
   const photo = (
     <Image
       src={item.photo.src}
@@ -52,7 +55,7 @@ function ProjectCard({ item }: { item: TrackItem }) {
       width={item.photo.w}
       height={item.photo.h}
       className="block object-cover transition-transform duration-500 group-hover:scale-105"
-      style={{ width, height: CARD_HEIGHT }}
+      style={{ width, height: "var(--card-h)" }}
     />
   );
 
@@ -115,7 +118,10 @@ export async function Projects() {
 
       <div className="relative z-2">
         <div className="absolute inset-x-0 top-5 z-1 h-0.5 bg-paper/18" />
-        <div className="flex w-max animate-projects-scroll items-start">
+        <div
+          className="flex w-max animate-projects-scroll items-start"
+          style={{ "--card-h": CARD_HEIGHT_EXPR } as CSSProperties}
+        >
           {track.map((item) => (
             <ProjectCard key={item.key} item={item} />
           ))}
