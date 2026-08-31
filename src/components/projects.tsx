@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ViewTransition } from "react";
 import { Skyline } from "@/components/skyline";
-import { PROJECTS, type ProjectPhoto } from "@/lib/projects";
+import { getProjects, type Project, type ProjectPhoto } from "@/lib/projects";
 
 const CARD_HEIGHT = 290;
 
@@ -21,30 +21,20 @@ type TrackItem = {
   shareTransition: boolean;
 };
 
-function buildTrack(): TrackItem[] {
-  const round: TrackItem[] = PROJECTS.flatMap((project) => {
-    const second = project.gallery.find((photo) => photo.src !== project.cover.src) ?? project.cover;
-    return [
-      {
-        key: `${project.slug}-cover`,
-        slug: project.slug,
-        title: project.title,
-        year: project.year,
-        rot: project.rot,
-        photo: project.cover,
-        shareTransition: true,
-      },
-      {
-        key: `${project.slug}-second`,
-        slug: project.slug,
-        title: project.title,
-        year: project.year,
-        rot: -project.rot * 0.7,
-        photo: second,
-        shareTransition: false,
-      },
-    ];
-  });
+// Con solo un puñado de proyectos, una sola vuelta se ve corta — cada uno
+// aparece dos veces en el carrusel, siempre con la misma foto principal
+// (nunca una "segunda foto" inventada): es el mismo proyecto ocupando más
+// espacio, no dos proyectos distintos.
+function buildTrack(projects: Project[]): TrackItem[] {
+  const round: TrackItem[] = projects.map((project) => ({
+    key: `${project.slug}-a`,
+    slug: project.slug,
+    title: project.title,
+    year: project.year,
+    rot: project.rot,
+    photo: project.cover,
+    shareTransition: true,
+  }));
   // Se duplica el recorrido completo para el loop infinito: ninguna copia del
   // segundo giro comparte `name` de ViewTransition (ya lo hizo el primero).
   return [
@@ -52,8 +42,6 @@ function buildTrack(): TrackItem[] {
     ...round.map((item, i) => ({ ...item, key: `loop-${i}`, shareTransition: false })),
   ];
 }
-
-const PROJECT_TRACK = buildTrack();
 
 function ProjectCard({ item }: { item: TrackItem }) {
   const width = cardWidth(item.photo);
@@ -102,7 +90,10 @@ function ProjectCard({ item }: { item: TrackItem }) {
   );
 }
 
-export function Projects() {
+export async function Projects() {
+  const projects = await getProjects();
+  const track = buildTrack(projects);
+
   return (
     <section id="work" className="relative overflow-hidden bg-night py-22 pb-[110px]">
       <Skyline />
@@ -117,7 +108,7 @@ export function Projects() {
           </div>
         </div>
         <div className="text-[10px] leading-[2.4] tracking-[0.2em] text-paper/50 uppercase md:text-right">
-          <div>{PROJECTS.length} Series</div>
+          <div>{projects.length} Series</div>
           <div>2024</div>
         </div>
       </div>
@@ -125,7 +116,7 @@ export function Projects() {
       <div className="relative z-2">
         <div className="absolute inset-x-0 top-5 z-1 h-0.5 bg-paper/18" />
         <div className="flex w-max animate-projects-scroll items-start">
-          {PROJECT_TRACK.map((item) => (
+          {track.map((item) => (
             <ProjectCard key={item.key} item={item} />
           ))}
         </div>

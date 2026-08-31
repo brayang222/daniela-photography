@@ -4,17 +4,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ViewTransition } from "react";
 import { ProjectGallery } from "@/components/project-gallery";
-import { PROJECTS, getProject } from "@/lib/projects";
+import { getProject, getProjects } from "@/lib/projects";
 
-export function generateStaticParams() {
-  return PROJECTS.map((project) => ({ slug: project.slug }));
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata(
   props: PageProps<"/proyectos/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const project = getProject(slug);
+  const project = await getProject(slug);
   if (!project) return {};
 
   return {
@@ -30,10 +31,11 @@ export async function generateMetadata(
 
 export default async function ProjectPage(props: PageProps<"/proyectos/[slug]">) {
   const { slug } = await props.params;
-  const project = getProject(slug);
+  const [project, projects] = await Promise.all([getProject(slug), getProjects()]);
   if (!project) notFound();
 
-  const nextProject = PROJECTS[(PROJECTS.indexOf(project) + 1) % PROJECTS.length];
+  const currentIndex = projects.findIndex((p) => p.slug === project.slug);
+  const nextProject = projects[(currentIndex + 1) % projects.length];
 
   const directional = {
     "nav-forward": "nav-forward",
